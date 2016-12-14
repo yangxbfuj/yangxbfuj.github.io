@@ -78,4 +78,3 @@ backup:
     type: git
     repository:
        github: git@github.com:yangxbfuj/yangxbfuj.github.io.git
-       gitcafe: git@github.com:yangxbfuj/yangxbfuj.github.io.git
