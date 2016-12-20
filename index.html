@@ -352,73 +352,19 @@
 
       
         
-          
-            <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="温故"><a href="#温故" class="headerlink" title="温故"></a>温故</h2><ol>
+          <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="温故"><a href="#温故" class="headerlink" title="温故"></a>温故</h2><ol>
 <li><p>margin属性中的start和end跟系统语言的文字有关，如果文字布局从左往右，那么end表示右边。</p>
 </li>
 <li><p>android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里</p>
 </li>
 </ol>
-<h2 id="知新"><a href="#知新" class="headerlink" title="知新"></a>知新</h2><h3 id="Material-Design"><a href="#Material-Design" class="headerlink" title="Material Design"></a>Material Design</h3><ol>
-<li><p>app:elevation可以设置material design的高度，翻译elevation: n.海拔。</p>
-</li>
-<li><p>app:elevation的数值越大，高度越大，投影效果越淡；数值越小，高度越小，投影效果越浓。</p>
-</li>
-</ol>
-<h3 id="Snackbar"><a href="#Snackbar" class="headerlink" title="Snackbar"></a>Snackbar</h3><ol>
-<li>可以为Snackbar增加一个点击事件，增加交互性。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Snackbar.make(view,<span class="string">"show message"</span>,Snackbar.LENGTH_SHORT)</div><div class="line">        .setAciton(<span class="string">"Undo"</span>,<span class="keyword">new</span> View.OnClickListener()&#123;</div><div class="line">            <span class="meta">@Overrider</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span></span>&#123;</div><div class="line">                <span class="comment">//Do something what user want</span></div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .show();</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>传入的view对象用于Snackbar查找最外层布局，用于展示Snackbar</p>
-<ol>
-<li>Undo 是为Snackbar设置了一个交互按钮，按钮的展示文字为”Undo”</li>
-</ol>
-<h3 id="CoordinatorLayout"><a href="#CoordinatorLayout" class="headerlink" title="CoordinatorLayout"></a>CoordinatorLayout</h3><ol>
-<li>CoordinatorLayout可以监听其所有的子控件的各种事件</li>
-</ol>
-<h3 id="CardView"><a href="#CardView" class="headerlink" title="CardView"></a>CardView</h3><ol>
-<li>app:cardCornerRadius=”5dp”</li>
-</ol>
-<h3 id="AppBarLayout"><a href="#AppBarLayout" class="headerlink" title="AppBarLayout"></a>AppBarLayout</h3><ol>
-<li><p>AppBarLayout实际上是一个垂直方向的LinearLayout,内部做了很多滚动事件的封装</p>
-</li>
-<li><p>使用方法</p>
-<ol>
-<li>将Toolbar嵌套到AppBarLayout中</li>
-<li><p>如同在一个CoordinatorLayout中，为响应控件制定一个布局行为如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app:layout_behavior=“@string/appbar_scrolling_view_behavior”</div></pre></td></tr></table></figure>
-<p>3.为AppBarLayout中的Toolbar指定响应行为</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.AppBarLayout</span></span></div><div class="line">    &gt;</div><div class="line">    <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></div><div class="line">        <span class="attr">app:layout_scrollFlags</span>=<span class="string">"scroll|enterAlways|snap"</span></div><div class="line">    /&gt;</div><div class="line">android.support.design.widget.AppBarLayout/&gt;</div></pre></td></tr></table></figure>
-<p>scroll:      表示当相应控件向上滚动时，Toolbar会跟随着向上移动，必要时隐藏<br>enterAlways: 表示当相应控件向下滚动时，Toolbar会跟着向下移动并重新显示<br>snap:        表示Toolbar没有完全隐藏或者显示时，根据情况自动选择隐藏或者是显示</p>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="SwipRefreshLayout"><a href="#SwipRefreshLayout" class="headerlink" title="SwipRefreshLayout"></a>SwipRefreshLayout</h3><ol>
-<li>将 RecylerView 嵌套到 SwipRefreshLayout 中</li>
-<li>为 SwipRefreshLayout 设置属性和绑定监听器</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">SwipRefreshLayout mSwipRefreshLayout;</div><div class="line">...</div><div class="line">mSwipRefreshLayout.setColorSchemeResources(R.color.colorPrimary);</div><div class="line">mSwipRefreshLayout.setOnRefreshListener(<span class="keyword">new</span> SwipRefreshLayout.</div><div class="line">    OnRefreshListener()&#123;</div><div class="line">        <span class="meta">@Overrider</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span></span>&#123;</div><div class="line">            refreshData();</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">refreshData</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable())&#123;</div><div class="line">        <span class="meta">@Overrider</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="comment">// do something</span></div><div class="line">            runOnUiThread(<span class="keyword">new</span> Runnable)&#123;</div><div class="line">                <span class="meta">@Overrider</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">                    <span class="comment">// 更新数据</span></div><div class="line">                    <span class="comment">// updateUIData()</span></div><div class="line">                    mSwipRefreshLayout.setRefreshing(<span class="keyword">false</span>);<span class="comment">//结束下拉刷新</span></div><div class="line">                &#125;</div><div class="line">            &#125;);    </div><div class="line">        &#125;;</div><div class="line">    &#125;).start();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="CollapsingToolbarLayout-定制标题栏"><a href="#CollapsingToolbarLayout-定制标题栏" class="headerlink" title="CollapsingToolbarLayout 定制标题栏"></a>CollapsingToolbarLayout 定制标题栏</h3><ol>
-<li><p>只能作为 AppBarLayout 的直接子布局来使用，而且 AppBarlayout 必须时 CoordinatorLayout 的子布局</p>
-</li>
-<li><p>例</p>
-</li>
-</ol>
-<pre><code class="xml">&lt;android.support.design.widget.CollapsingToolbarLayout
-    ...
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    &lt;!-- 制定 CollapsingToolbarLayout 在趋于折叠状态以及折叠之后的背景色 --&gt;
-    app:contentScrim="?attr/colorPrimary"
-    app:layout_scrollFlags="scroll|enterAlways|snap"&gt;
-    &lt;ImageView
-        app:layout_collapseMode="parallax"/&gt;
-    &lt;android.support.v7.widget.Toolbar
-        app:layout_collapseMode="pin"/&gt;    
-&lt;/android.support.design.widget.CollapsingToolbarLayout&gt;
-</code></pre>
-
-          
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/20/学习笔记161220/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

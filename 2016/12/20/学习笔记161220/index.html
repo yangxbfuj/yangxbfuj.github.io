@@ -87,13 +87,7 @@
 <meta name="description" content="知识点温故
 margin属性中的start和end跟系统语言的文字有关，如果文字布局从左往右，那么end表示右边。
 
-android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里
-
-
-知新Material Design
-app:elevation可以设置material design的高度，翻译elevation: n.海拔。
-
-app:elevation的数值越">
+android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记161220">
 <meta property="og:url" content="http://yoursite.com/2016/12/20/学习笔记161220/index.html">
@@ -101,26 +95,14 @@ app:elevation的数值越">
 <meta property="og:description" content="知识点温故
 margin属性中的start和end跟系统语言的文字有关，如果文字布局从左往右，那么end表示右边。
 
-android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里
-
-
-知新Material Design
-app:elevation可以设置material design的高度，翻译elevation: n.海拔。
-
-app:elevation的数值越">
-<meta property="og:updated_time" content="2016-12-20T06:32:04.000Z">
+android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里">
+<meta property="og:updated_time" content="2016-12-20T07:10:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记161220">
 <meta name="twitter:description" content="知识点温故
 margin属性中的start和end跟系统语言的文字有关，如果文字布局从左往右，那么end表示右边。
 
-android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里
-
-
-知新Material Design
-app:elevation可以设置material design的高度，翻译elevation: n.海拔。
-
-app:elevation的数值越">
+android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里">
 
 
 
@@ -383,6 +365,7 @@ app:elevation的数值越">
 <li><p>android:fitsSystemWindows=”true” 表示控件将出现在系统状态栏里</p>
 </li>
 </ol>
+<a id="more"></a>
 <h2 id="知新"><a href="#知新" class="headerlink" title="知新"></a>知新</h2><h3 id="Material-Design"><a href="#Material-Design" class="headerlink" title="Material Design"></a>Material Design</h3><ol>
 <li><p>app:elevation可以设置material design的高度，翻译elevation: n.海拔。</p>
 </li>
@@ -429,18 +412,8 @@ app:elevation的数值越">
 <li><p>例</p>
 </li>
 </ol>
-<pre><code class="xml">&lt;android.support.design.widget.CollapsingToolbarLayout
-    ...
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    &lt;!-- 制定 CollapsingToolbarLayout 在趋于折叠状态以及折叠之后的背景色 --&gt;
-    app:contentScrim="?attr/colorPrimary"
-    app:layout_scrollFlags="scroll|enterAlways|snap"&gt;
-    &lt;ImageView
-        app:layout_collapseMode="parallax"/&gt;
-    &lt;android.support.v7.widget.Toolbar
-        app:layout_collapseMode="pin"/&gt;    
-&lt;/android.support.design.widget.CollapsingToolbarLayout&gt;
-</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;android.support.design.widget.CollapsingToolbarLayout</div><div class="line">    ...</div><div class="line">    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"</div><div class="line">    &lt;!-- 制定 CollapsingToolbarLayout 在趋于折叠状态以及折叠之后的背景色 --&gt;</div><div class="line">    app:contentScrim="?attr/colorPrimary"</div><div class="line">    app:layout_scrollFlags="scroll|enterAlways|snap"&gt;</div><div class="line">    &lt;ImageView</div><div class="line">        app:layout_collapseMode="parallax"/&gt;</div><div class="line">    &lt;android.support.v7.widget.Toolbar</div><div class="line">        app:layout_collapseMode="pin"/&gt;    </div><div class="line">&lt;/android.support.design.widget.CollapsingToolbarLayout&gt;</div><div class="line">``` </div><div class="line"></div><div class="line">### lambda 表达式简解</div><div class="line"></div><div class="line">```java</div><div class="line">interface MyListener&#123;</div><div class="line">    String doSomething(String a,String b);</div><div class="line">&#125;</div><div class="line"></div><div class="line">public void hello(MyListener listener)&#123;</div><div class="line">    //do something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hello((a,b) -&gt; &#123;</div><div class="line">    String result = a + b;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 
       
     </div>
