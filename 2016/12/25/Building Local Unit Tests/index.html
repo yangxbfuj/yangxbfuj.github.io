@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/25/Building Local Unit Tests/index.html">
 <meta property="og:site_name" content="YXB's Blog">
 <meta property="og:description" content="If your unit test has no dependencies or only has simple dependencies on Android, you should run your test on a local development machine. This testing approach is efficient because it helps you avoid">
-<meta property="og:updated_time" content="2016-12-25T05:10:31.000Z">
+<meta property="og:updated_time" content="2017-02-25T15:01:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Building Local Unit Tests">
 <meta name="twitter:description" content="If your unit test has no dependencies or only has simple dependencies on Android, you should run your test on a local development machine. This testing approach is efficient because it helps you avoid">
@@ -340,6 +340,7 @@
 
       
         <p>If your unit test has no dependencies or only has simple dependencies on Android, you should run your test on a local development machine. This testing approach is efficient because it helps you avoid the overhead of loading the target app and unit test code onto a physical device or emulator every time your test is run. Consequently, the execution time for running your unit test is greatly reduced. With this approach, you normally use a mocking framework, like Mockito, to fulfill any dependency relationships.</p>
+<a id="more"></a>
 <h2 id="Set-Up-Your-Testing-Environment"><a href="#Set-Up-Your-Testing-Environment" class="headerlink" title="Set Up Your Testing Environment"></a>Set Up Your Testing Environment</h2><p>In your Android Studio project, you must store the source files for local unit tests at <strong>module-name/src/test/java/</strong>. This directory already exists when you create a new project.</p>
 <p>You also need to configure the testing dependencies for your project to use the standard APIs provided by the JUnit 4 framework. If your test needs to interact with Android dependencies, include the Mockito library to simplify your local unit tests. To learn more about using mock objects in your local unit tests, see Mocking Android dependencies.</p>
 <p>In your app’s top-level build.gradle file, you need to specify these libraries as dependencies:</p>
