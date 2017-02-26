@@ -59,7 +59,7 @@ Note that you should generally create a new ContentProviderClient instance for e
 
 ### ContentProviderOperation
 
-用于指代一个对于ContentProvider的操作。
+用于指代一个对于ContentProvider的操作。applyBatch(String authority,ArrayList<ContentProviderOperation> operations)同时支持事务。
 如下为一个简单事例
 ```java
  private void insertWithClientAndOperation() {
@@ -83,7 +83,7 @@ Note that you should generally create a new ContentProviderClient instance for e
             Log.e(getClass().getSimpleName(), "e", e);
             e.printStackTrace();
         } finally {
-            contentProviderClient.clese();
+            contentProviderClient.close();
         }
         long timeA = SystemClock.uptimeMillis();
         Log.d(getClass().getSimpleName(), String.format("Insert value in insertWithClientAndOperation() %s cost %d ms.", "all info ", timeA - timeB));
@@ -107,4 +107,67 @@ private void insertWithAsyncQueryHandler() {
         contentValues.put(ContentProviderDemoSQLiteHelper.USER_PHONE, "1");
         asyncQueryHandler.startInsert(0, null, MyContentProvider.USER_INTO_URI, contentValues);
     }
+```
+
+### ContentObserver
+作为一个ContentProvider的数据改变的观察者
+
+类定义
+```java
+    public static class MyContentObserver extends ContentObserver{
+        /**
+         * Creates a content observer.
+         *
+         * @param handler The handler to run {@link #onChange} on, or null if none.
+         */
+        public MyContentObserver(Handler handler) {
+            super(handler);
+            Log.d(getClass().getSimpleName(), "MyContentObserver constructed ");
+        }
+
+        /**
+         * 当观察到数据改变时，回调此方法
+         * @param selfChange
+         * @param uri
+         */
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            Log.d(getClass().getSimpleName(), "ContentObserver onChange(boolean,Uri) start");
+            super.onChange(selfChange, uri);
+            Log.d(getClass().getSimpleName(), "ContentObserver onChange(boolean,Uri) end");
+        }
+
+        /**
+         * 当观察到数据改变时，回调此方法
+         * @param selfChange
+         */
+        @Override
+        public void onChange(boolean selfChange) {
+            Log.d(getClass().getSimpleName(), "ContentObserver onChange(boolean) start");
+            super.onChange(selfChange);
+            Log.d(getClass().getSimpleName(), "ContentObserver onChange(boolean) start");
+        }
+    }
+```
+
+在ContentProvider中操作数据库后，通知数据库ContentResolver
+```java
+getContext().getContentResolver().notifyChange(Uri,ContentObserver);
+```
+
+在使用ContentResolver的地方注册观察者
+```java
+private void setContentObserver() {
+    Log.d(getClass().getSimpleName(),"registerContentObserver uri = "+ MyContentProvider.USER_INTO_URI.toString());
+    getContentResolver().registerContentObserver(MyContentProvider.USER_INTO_URI, true, contentObserver);
+}
+```
+
+最后在Activity、Services的声明周期结束时取消观察者
+```java
+@Override
+protected void onDestroy() {
+    getContentResolver().unregisterContentObserver(contentObserver);
+    super.onDestroy();
+}
 ```
