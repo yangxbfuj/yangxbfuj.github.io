@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="相关学习项目地址：https://github.com/yangxbfuj/AndroidThreadDemo
-此文简单介绍了一些Android多线程的内容。">
+此文简单介绍了一些Android多线程中 Hanlder 、Looper 和 MessageQueue等的内容。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handler、Looper 和 MessageQueue">
 <meta property="og:url" content="http://yoursite.com/2017/02/26/Handler、Looper和MessageQueue/index.html">
 <meta property="og:site_name" content="YXB's Blog">
 <meta property="og:description" content="相关学习项目地址：https://github.com/yangxbfuj/AndroidThreadDemo
-此文简单介绍了一些Android多线程的内容。">
-<meta property="og:updated_time" content="2017-02-26T06:11:55.000Z">
+此文简单介绍了一些Android多线程中 Hanlder 、Looper 和 MessageQueue等的内容。">
+<meta property="og:updated_time" content="2017-02-26T06:17:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler、Looper 和 MessageQueue">
 <meta name="twitter:description" content="相关学习项目地址：https://github.com/yangxbfuj/AndroidThreadDemo
-此文简单介绍了一些Android多线程的内容。">
+此文简单介绍了一些Android多线程中 Hanlder 、Looper 和 MessageQueue等的内容。">
 
 
 
@@ -343,7 +343,7 @@
 
       
         <p>相关学习项目地址：<a href="https://github.com/yangxbfuj/AndroidThreadDemo" target="_blank" rel="external">https://github.com/yangxbfuj/AndroidThreadDemo</a></p>
-<p>此文简单介绍了一些Android多线程的内容。</p>
+<p>此文简单介绍了一些Android多线程中 Hanlder 、Looper 和 MessageQueue等的内容。</p>
 <a id="more"></a>
 <h2 id="Andriod-中的消息机制"><a href="#Andriod-中的消息机制" class="headerlink" title="Andriod 中的消息机制"></a>Andriod 中的消息机制</h2><h3 id="Handler-、-Looper-和-MessageQueue"><a href="#Handler-、-Looper-和-MessageQueue" class="headerlink" title="Handler 、 Looper 和 MessageQueue"></a>Handler 、 Looper 和 MessageQueue</h3><p>UI线程会关联一个消息队列，所有的操作都会被封装成消息然后交给主线程处理。为了保证主线程不会主动退出，会将获取消息的操作放在一个死循环中，<br>样程序就相当于一直执行在死循环中。（当然在循环中，线程会在没有消息时发生阻塞）。UI消息循环在 ActivityThread.main 方法中创建的。</p>
 <h4 id="系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？"><a href="#系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？" class="headerlink" title="系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？"></a>系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？</h4><p>每个 Handler 都会关联一个消息队列，消息队列被封装到一个 Looper 中，而每个 Looper 又会关联一个线程（ Looper 封装在 ThreadLocal 中），最终就等于没个消息队列会关联一个线程。Handler 就是一个消息处理器，将消息投递给消息队列，然后再有对应的线程从消息队列中出个取出消息，并且执行。</p>
@@ -359,7 +359,7 @@
 <p>Looper 对象通过从 MessageQueue 中取得响应的 Message ,然后将 Message 调用痛过 Message 的 target （实质就是一个 Handler ）属性调用。</p>
 <p>在来看看 Handler 是如何处理消息的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Handle system messages here.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispatchMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (msg.callback != <span class="keyword">null</span>) &#123;</div><div class="line">        handleCallback(msg);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (mCallback.handleMessage(msg)) &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        handleMessage(msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handleCallback</span><span class="params">(Message message)</span> </span>&#123;</div><div class="line">    message.callback.run();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Subclasses must implement this to receive messages.</div><div class="line"> * 用户重写</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="在自线程中创建-Handler-为什么会抛出异常？"><a href="#在自线程中创建-Handler-为什么会抛出异常？" class="headerlink" title="在自线程中创建 Handler 为什么会抛出异常？"></a>在自线程中创建 Handler 为什么会抛出异常？</h4><p>根据 Handler 初始化方法，Handler 需要获取 Looper.myLooper() ,而新线程的 Looper.myLooper() 的结果为空，也就是说新线程并没有创建相关的 Looper （自然包括 MessageQueue）。</p>
+<h4 id="在子线程中创建-Handler-为什么会抛出异常？"><a href="#在子线程中创建-Handler-为什么会抛出异常？" class="headerlink" title="在子线程中创建 Handler 为什么会抛出异常？"></a>在子线程中创建 Handler 为什么会抛出异常？</h4><p>根据 Handler 初始化方法，Handler 需要获取 Looper.myLooper() ,而新线程的 Looper.myLooper() 的结果为空，也就是说新线程并没有创建相关的 Looper （自然包括 MessageQueue）。</p>
 <p>那么如何解决呢？答案是在新线程中调用 Looper.prepare()方法，创建一个 Looper对象。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** Initialize the current thread as a looper.</span></div><div class="line"> * This gives you a chance to create handlers that then reference</div><div class="line"> * this looper, before actually starting the loop. Be sure to call</div><div class="line"> * &#123;<span class="doctag">@link</span> #loop()&#125; after calling this method, and end it by calling</div><div class="line"> * &#123;<span class="doctag">@link</span> #quit()&#125;.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</div><div class="line">    prepare(<span class="keyword">true</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Looper may be created per thread"</span>);</div><div class="line">    &#125;</div><div class="line">    sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed)); <span class="comment">// 创建一个 Looper 对象</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
@@ -397,6 +397,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/26/Android多线程/" rel="prev" title="Android多线程">
+                Android多线程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -464,7 +468,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -472,7 +476,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -516,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Andriod-中的消息机制"><span class="nav-number">1.</span> <span class="nav-text">Andriod 中的消息机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-、-Looper-和-MessageQueue"><span class="nav-number">1.1.</span> <span class="nav-text">Handler 、 Looper 和 MessageQueue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？"><span class="nav-number">1.1.1.</span> <span class="nav-text">系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么更新UI线程的-Handler-必须在UI线程中创建？"><span class="nav-number">1.1.2.</span> <span class="nav-text">为什么更新UI线程的 Handler 必须在UI线程中创建？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息循环又是如何执行的呢？"><span class="nav-number">1.1.3.</span> <span class="nav-text">消息循环又是如何执行的呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在自线程中创建-Handler-为什么会抛出异常？"><span class="nav-number">1.1.4.</span> <span class="nav-text">在自线程中创建 Handler 为什么会抛出异常？</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Andriod-中的消息机制"><span class="nav-number">1.</span> <span class="nav-text">Andriod 中的消息机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler-、-Looper-和-MessageQueue"><span class="nav-number">1.1.</span> <span class="nav-text">Handler 、 Looper 和 MessageQueue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？"><span class="nav-number">1.1.1.</span> <span class="nav-text">系统如何将消息投递到消息队列？系统如何从消息队列中获得消息？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么更新UI线程的-Handler-必须在UI线程中创建？"><span class="nav-number">1.1.2.</span> <span class="nav-text">为什么更新UI线程的 Handler 必须在UI线程中创建？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息循环又是如何执行的呢？"><span class="nav-number">1.1.3.</span> <span class="nav-text">消息循环又是如何执行的呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在子线程中创建-Handler-为什么会抛出异常？"><span class="nav-number">1.1.4.</span> <span class="nav-text">在子线程中创建 Handler 为什么会抛出异常？</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
