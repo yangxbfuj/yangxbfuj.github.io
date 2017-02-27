@@ -129,6 +129,7 @@ FutureTask 会像 Thread 包装 Runnable 那样对 Runnable 和Callable<V> 进�
 线程池都实现了 ExecutorService 接口。
 
 不想写了，自己去查资料吧。
+还有一些内容，开新的文章。
 
 
 
