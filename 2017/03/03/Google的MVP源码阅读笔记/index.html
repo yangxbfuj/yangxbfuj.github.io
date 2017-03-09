@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="测试," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="Unit tests are the fundamental tests in your app testing strategy. By creating and running unit tests against your code, you can easily verify that the logic of individual units is correct. Running un">
+<meta name="description" content="本文记录阅读Google关于MVP模式的源码的时的笔记。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Building Effective Unit Tests">
-<meta property="og:url" content="http://yoursite.com/2016/12/25/Building Effective Unit Tests/index.html">
+<meta property="og:title" content="Google的MVP源码阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/03/Google的MVP源码阅读笔记/index.html">
 <meta property="og:site_name" content="YXB's Blog">
-<meta property="og:description" content="Unit tests are the fundamental tests in your app testing strategy. By creating and running unit tests against your code, you can easily verify that the logic of individual units is correct. Running un">
-<meta property="og:updated_time" content="2016-12-25T05:02:25.000Z">
+<meta property="og:description" content="本文记录阅读Google关于MVP模式的源码的时的笔记。">
+<meta property="og:updated_time" content="2017-03-03T05:30:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Building Effective Unit Tests">
-<meta name="twitter:description" content="Unit tests are the fundamental tests in your app testing strategy. By creating and running unit tests against your code, you can easily verify that the logic of individual units is correct. Running un">
+<meta name="twitter:title" content="Google的MVP源码阅读笔记">
+<meta name="twitter:description" content="本文记录阅读Google关于MVP模式的源码的时的笔记。">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/25/Building Effective Unit Tests/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/03/Google的MVP源码阅读笔记/"/>
 
 
 
 
 
-  <title> Building Effective Unit Tests | YXB's Blog </title>
+  <title> Google的MVP源码阅读笔记 | YXB's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -248,7 +248,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/25/Building Effective Unit Tests/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/03/Google的MVP源码阅读笔记/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="YXB">
@@ -272,7 +272,7 @@
             
             
               
-                Building Effective Unit Tests
+                Google的MVP源码阅读笔记
               
             
           </h1>
@@ -285,8 +285,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-25T12:44:45+08:00">
-                2016-12-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-03T13:18:07+08:00">
+                2017-03-03
               </time>
             
 
@@ -306,6 +306,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Android/" itemprop="url" rel="index">
                     <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/MVP模式/" itemprop="url" rel="index">
+                    <span itemprop="name">MVP模式</span>
                   </a>
                 </span>
 
@@ -339,22 +350,10 @@
       
 
       
-        <p>Unit tests are the fundamental tests in your app testing strategy. By creating and running unit tests against your code, you can easily verify that the logic of individual units is correct. Running unit tests after every build helps you to quickly catch and fix software regressions introduced by code changes to your app.</p>
-<p>A unit test generally <strong>exercises the functionality of the smallest possible unit</strong> of code (which could be a method, class, or component) in a repeatable way. You should build unit tests when you need to verify the logic of specific code in your app. For example, if you are unit testing a class, your test might check that the class is in the right state. Typically, the unit of code is tested in isolation; your test affects and monitors changes to that unit only. A mocking framework can be used to isolate your unit from its dependencies.</p>
+        <p>本文记录阅读Google关于MVP模式的源码的时的笔记。</p>
 <a id="more"></a>
-<blockquote>
-<p>Note: Unit tests are not suitable for testing complex UI interaction events. Instead, you should use the UI testing frameworks, as described in Automating UI Tests.</p>
-</blockquote>
-<p>For testing Android apps, you typically create these types of automated unit tests:</p>
-<ul>
-<li><strong>Local tests</strong>: Unit tests that run on your local machine only. These tests are compiled to run locally on the Java Virtual Machine (JVM) to minimize execution time. Use this approach to run unit tests that <strong>have no dependencies on the Android framework</strong> or <strong>have dependencies that can be filled by using mock objects</strong>.</li>
-<li><strong>Instrumented tests</strong>: Unit tests that run on an Android device or emulator. These tests have access to instrumentation information, such as the Context for the app under test. Use this approach to run unit tests that <strong>have Android dependencies which cannot be easily filled by using mock objects</strong>.</li>
-</ul>
-<p>The lessons in this class teach you how to build these types of automated unit tests.</p>
-<h2 id="Lessons"><a href="#Lessons" class="headerlink" title="Lessons"></a>Lessons</h2><p><a href="">Building Local Unit Tests</a></p>
-<p>Learn how to build unit tests that run on your local machine.</p>
-<p><a href="">Building Instrumented Unit Tests</a></p>
-<p>Learn how to build unit tests that run on an Android device or emulator.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Set up the toolbar.</span></div><div class="line">Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</div><div class="line">setSupportActionBar(toolbar);</div><div class="line">ActionBar ab = getSupportActionBar();</div><div class="line"></div><div class="line"><span class="comment">// 设置左边的菜单</span></div><div class="line">ab.setHomeAsUpIndicator(R.drawable.ic_menu);</div><div class="line">ab.setDisplayHomeAsUpEnabled(<span class="keyword">true</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@VisibleForTesting</span></div><div class="line">    <span class="function"><span class="keyword">public</span> IdlingResource <span class="title">getCountingIdlingResource</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> EspressoIdlingResource.getIdlingResource();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -376,19 +375,13 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/测试/" rel="tag"># 测试</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/24/Android测试（一）/" rel="next" title="Android测试（一）">
-                <i class="fa fa-chevron-left"></i> Android测试（一）
+              <a href="/2017/03/02/自定义实现一个WheelView/" rel="next" title="自定义实现一个WheelView">
+                <i class="fa fa-chevron-left"></i> 自定义实现一个WheelView
               </a>
             
           </div>
@@ -397,8 +390,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/25/Building Local Unit Tests/" rel="prev" title="Building Local Unit Tests">
-                Building Local Unit Tests <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/09/不忘粗心/" rel="prev" title="不忘粗心">
+                不忘粗心 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -446,17 +439,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -509,22 +493,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lessons"><span class="nav-number">1.</span> <span class="nav-text">Lessons</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
     </div>
