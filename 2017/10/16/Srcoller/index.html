@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="开发," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文仅根据 Android 官方文档和自身 Demo 讲解.内容有限,但都是自己的.
+代码地址https://github.com/yangxbfuj/interview/blob/master/app/src/main/java/com/example/yxb/interview/scrollview/RulerScrollerView.java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Srcoller">
+<meta property="og:url" content="http://yoursite.com/2017/10/16/Srcoller/index.html">
+<meta property="og:site_name" content="YXB's Blog">
+<meta property="og:description" content="本文仅根据 Android 官方文档和自身 Demo 讲解.内容有限,但都是自己的.
+代码地址https://github.com/yangxbfuj/interview/blob/master/app/src/main/java/com/example/yxb/interview/scrollview/RulerScrollerView.java">
+<meta property="og:updated_time" content="2017-10-16T09:54:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Srcoller">
+<meta name="twitter:description" content="本文仅根据 Android 官方文档和自身 Demo 讲解.内容有限,但都是自己的.
+代码地址https://github.com/yangxbfuj/interview/blob/master/app/src/main/java/com/example/yxb/interview/scrollview/RulerScrollerView.java">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/16/Srcoller/"/>
+
+
+
+
+
+  <title> Srcoller | YXB's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YXB's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/Srcoller/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="YXB">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YXB's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YXB's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Srcoller
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T17:17:11+08:00">
+                2017-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/View/" itemprop="url" rel="index">
+                    <span itemprop="name">View</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文仅根据 Android 官方文档和自身 Demo 讲解.内容有限,但都是自己的.</p>
+<p>代码地址<a href="https://github.com/yangxbfuj/interview/blob/master/app/src/main/java/com/example/yxb/interview/scrollview/RulerScrollerView.java" target="_blank" rel="external">https://github.com/yangxbfuj/interview/blob/master/app/src/main/java/com/example/yxb/interview/scrollview/RulerScrollerView.java</a></p>
+<a id="more"></a>
+<h2 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h2><p>本例是一个类似直尺的 View ，启动可以使用输入滚动位置、触摸和 fling 方式滚动。</p>
+<p>一下为官方类说明：</p>
+<p>This class encapsulates scrolling. You can use scrollers (Scroller or OverScroller) to collect the data you need to produce a scrolling animation—for example, in response to a fling gesture. Scrollers track scroll offsets for you over time, but they don’t automatically apply those positions to your view. It’s your responsibility to get and apply new coordinates at a rate that will make the scrolling animation look smooth.</p>
+<p>该类封装了滚动。你可以使用滚动器（ Scroller 或 OverScroller) 来封装你在处理一个滚动动画时的数据，比如，一个 fling 手势的响应。滚动器始终为你跟踪滚动位移，单他们不会自动为你的 View 设置位置。在一个能够将滚动动画变现的丝滑的 rate 中获取和设置新的坐标则是开发者的职责。</p>
+<p>Here is a simple example:<br>有一个简单的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Scroller mScroller = <span class="keyword">new</span> Scroller(context);</div><div class="line">...</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zoomIn</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// Revert any animation currently in progress</span></div><div class="line">    mScroller.forceFinished(<span class="keyword">true</span>);</div><div class="line">    <span class="comment">// Start scrolling by providing a starting point and</span></div><div class="line">    <span class="comment">// the distance to travel</span></div><div class="line">    mScroller.startScroll(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>);</div><div class="line">    <span class="comment">// Invalidate to request a redraw</span></div><div class="line">    invalidate();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>To track the changing positions of the x/y coordinates, use computeScrollOffset(). The method returns a boolean to indicate whether the scroller is finished. If it isn’t, it means that a fling or programmatic pan operation is still in progress. You can use this method to find the current offsets of the x and y coordinates, for example:</p>
+<p>使用 computeScrollOffset() 方法来跟踪改变的 x/y 坐标。这个方法返回一份指示是否已经滚动完成的 boolean 值。如果这个是为 False ，那么它意味值一个 fling 或者一个 programmatic pan 操作还在进行中。你可以使用这个方法找到当前 x/y 坐标系位移，例如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (mScroller.computeScrollOffset()) &#123;</div><div class="line">    <span class="comment">// Get current x and y positions</span></div><div class="line">    <span class="keyword">int</span> currX = mScroller.getCurrX();</div><div class="line">    <span class="keyword">int</span> currY = mScroller.getCurrY();</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.example.yxb.interview.scrollview;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"><span class="keyword">import</span> android.content.res.TypedArray;</div><div class="line"><span class="keyword">import</span> android.graphics.Canvas;</div><div class="line"><span class="keyword">import</span> android.graphics.Paint;</div><div class="line"><span class="keyword">import</span> android.graphics.Rect;</div><div class="line"><span class="keyword">import</span> android.support.annotation.Nullable;</div><div class="line"><span class="keyword">import</span> android.util.AttributeSet;</div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"><span class="keyword">import</span> android.util.TypedValue;</div><div class="line"><span class="keyword">import</span> android.view.MotionEvent;</div><div class="line"><span class="keyword">import</span> android.view.VelocityTracker;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.widget.Scroller;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.example.yxb.interview.R;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RulerScrollerView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">long</span> lastTime;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String TAG = <span class="string">"ScrollerView"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Scroller mScroller;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mLength = <span class="number">100</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mIntervalLength = <span class="number">100</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Paint mLinePaint;</div><div class="line">    <span class="keyword">private</span> Paint mTextPaint;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextHeight = <span class="number">10</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mTextWidth = <span class="number">10</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mLineHeight = <span class="number">50</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mGap = <span class="number">50</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> totalWidth = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RulerScrollerView</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(context, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RulerScrollerView</span><span class="params">(Context context, @Nullable AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(context, attrs, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RulerScrollerView</span><span class="params">(Context context, @Nullable AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</div><div class="line">        mScroller = <span class="keyword">new</span> Scroller(context);</div><div class="line"></div><div class="line">        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RulerScrollerView, defStyleAttr, <span class="number">0</span>);</div><div class="line">        mIntervalLength = typedArray.getDimensionPixelSize(R.styleable.RulerScrollerView_ruler_unit_length, mIntervalLength);</div><div class="line">        mLength = typedArray.getInt(R.styleable.RulerScrollerView_ruler_length, mLength);</div><div class="line">        typedArray.recycle();</div><div class="line">        <span class="comment">// 初始化文本绘制笔</span></div><div class="line">        mTextPaint = <span class="keyword">new</span> Paint();</div><div class="line">        mTextPaint.setTextSize(<span class="number">50</span>);</div><div class="line">        mTextPaint.setColor(context.getColor(android.R.color.black));</div><div class="line"></div><div class="line">        <span class="comment">// 计算文本的高度</span></div><div class="line">        String test = <span class="string">"1"</span>;</div><div class="line">        Rect rect = <span class="keyword">new</span> Rect();</div><div class="line">        mTextPaint.getTextBounds(test, <span class="number">0</span>, test.length(), rect);</div><div class="line">        mTextHeight = rect.height();</div><div class="line">        mTextWidth = rect.width();</div><div class="line"></div><div class="line">        <span class="comment">// 设置划线笔</span></div><div class="line">        mLinePaint = <span class="keyword">new</span> Paint();</div><div class="line">        mLinePaint.set(mTextPaint);</div><div class="line">        mLinePaint.setStrokeWidth(<span class="number">4</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> measureHeight = mTextHeight + mGap + mLineHeight + getPaddingTop() + getPaddingBottom();</div><div class="line">        <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</div><div class="line">        heightMeasureSpec = MeasureSpec.makeMeasureSpec(measureHeight, heightMode);</div><div class="line">        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> mLocationCLickFirst = <span class="number">0</span>;</div><div class="line">    VelocityTracker mVelocityTracker;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (event.getAction()) &#123;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">                <span class="keyword">if</span> (mVelocityTracker == <span class="keyword">null</span>) &#123;</div><div class="line">                    mVelocityTracker = VelocityTracker.obtain();</div><div class="line">                    mVelocityTracker.addMovement(event);</div><div class="line">                &#125;</div><div class="line">                mScroller.abortAnimation();</div><div class="line">                Log.i(TAG, <span class="string">"action down "</span>);</div><div class="line">                mLocationCLickFirst = (<span class="keyword">int</span>) event.getX();</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">                Log.i(TAG, <span class="string">"action move "</span>);</div><div class="line">                mScroller.startScroll(getScrollX(), getScrollY(), mLocationCLickFirst - (<span class="keyword">int</span>) event.getX(), <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">                invalidate();</div><div class="line">                mLocationCLickFirst = (<span class="keyword">int</span>) event.getX();</div><div class="line">                mVelocityTracker.addMovement(event);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">                Log.i(TAG, <span class="string">"action up "</span>);</div><div class="line">                mVelocityTracker.addMovement(event);</div><div class="line">                mVelocityTracker.computeCurrentVelocity(<span class="number">1000</span>);</div><div class="line">                Log.i(TAG, <span class="string">"mVelocityTracker.getXVelocity() = "</span> + mVelocityTracker.getXVelocity());</div><div class="line">                mScroller.fling(getScrollX(), getScrollY(), -(<span class="keyword">int</span>) mVelocityTracker.getXVelocity(), <span class="number">0</span>, <span class="number">0</span>, totalWidth - getMeasuredWidth(), <span class="number">0</span>, getMeasuredHeight());</div><div class="line">                invalidate();</div><div class="line">                <span class="keyword">if</span> (mVelocityTracker != <span class="keyword">null</span>) &#123;</div><div class="line">                    mVelocityTracker.recycle();</div><div class="line">                    mVelocityTracker = <span class="keyword">null</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line">        totalWidth = getPaddingLeft() + getPaddingRight() + mLength * mIntervalLength;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= mLength; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offSet = i * mIntervalLength;</div><div class="line">            <span class="keyword">if</span> (i % <span class="number">5</span> == <span class="number">0</span>) &#123;</div><div class="line">                String text = String.valueOf(i);</div><div class="line">                <span class="keyword">int</span> textWith = text.length() * mTextWidth;</div><div class="line">                canvas.drawText(text, getPaddingLeft() + offSet - textWith, getPaddingTop() + mTextHeight, mTextPaint);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">float</span> coefficient = i % <span class="number">5</span> == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0.5f</span>;</div><div class="line">            canvas.drawLine(offSet + getPaddingLeft() + mLinePaint.getStrokeWidth() / <span class="number">2</span>,</div><div class="line">                    getMeasuredHeight() - getPaddingBottom(),</div><div class="line">                    offSet + getPaddingLeft() + mLinePaint.getStrokeWidth() / <span class="number">2</span>,</div><div class="line">                    getMeasuredHeight() - getPaddingBottom() - mLineHeight * coefficient,</div><div class="line">                    mLinePaint);</div><div class="line">        &#125;</div><div class="line">        canvas.drawLine(getPaddingLeft(), getMeasuredHeight() - getPaddingBottom(), mLength * mIntervalLength + getPaddingLeft(), getMeasuredHeight() - getPaddingBottom(), mLinePaint);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 界面每次绘制时,系统调用该方法?</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.computeScroll();</div><div class="line">        <span class="comment">// 是否滚动完毕</span></div><div class="line">        <span class="keyword">if</span> (mScroller.computeScrollOffset()) &#123;</div><div class="line">            <span class="comment">// 界面来进行滚动</span></div><div class="line">            <span class="keyword">this</span>.scrollTo(mScroller.getCurrX(), mScroller.getCurrY());</div><div class="line">            <span class="keyword">long</span> current = System.currentTimeMillis();</div><div class="line">            Log.i(TAG, <span class="string">"scroll to "</span> + mScroller.getCurrX() + <span class="string">","</span> + mScroller.getCurrY() + <span class="string">" interval time "</span> + (current - lastTime));</div><div class="line">            lastTime = current;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scrollTo</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</div><div class="line">            x = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (x &gt; totalWidth - getMeasuredWidth()) &#123;</div><div class="line">            x = totalWidth - getMeasuredWidth();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">super</span>.scrollTo(x, y);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scrollTo</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        <span class="comment">// 开始滚动,其中要传入当前View的滚动状态</span></div><div class="line">        mScroller.startScroll(getScrollX(), getScrollY(), x - mScroller.getCurrX(), <span class="number">0</span>);</div><div class="line">        <span class="comment">// 重绘</span></div><div class="line">        invalidate();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scrollToIndex</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        scrollTo(x * mIntervalLength);</div><div class="line">        Log.i(TAG, <span class="string">"scrollToIndex pixel is  "</span> + (x * mIntervalLength));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="关键位置："><a href="#关键位置：" class="headerlink" title="关键位置："></a>关键位置：</h3><p>1.设置滚动的属性值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 171行</span></div><div class="line">mScroller.startScroll(getScrollX(), getScrollY(), x - mScroller.getCurrX(), <span class="number">0</span>);</div><div class="line"><span class="comment">// 重绘</span></div><div class="line">invalidate();</div></pre></td></tr></table></figure></p>
+<p>注意要重绘。</p>
+<p>2.设置 view 的滚动位置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.computeScroll();</div><div class="line">    <span class="comment">// 是否滚动完毕</span></div><div class="line">    <span class="keyword">if</span> (mScroller.computeScrollOffset()) &#123;</div><div class="line">        <span class="comment">// 界面来进行滚动</span></div><div class="line">        <span class="keyword">this</span>.scrollTo(mScroller.getCurrX(), mScroller.getCurrY());</div><div class="line">        <span class="keyword">long</span> current = System.currentTimeMillis();</div><div class="line">        Log.i(TAG, <span class="string">"scroll to "</span> + mScroller.getCurrX() + <span class="string">","</span> + mScroller.getCurrY() + <span class="string">" interval time "</span> + (current - lastTime));</div><div class="line">        lastTime = current;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>view 的滚动本质上还是调用的 View.scrollXXX 系列方法，只不过其中的值由 mScroller 提供。</p>
+<p>3.fling 效果<br>首先，取得速度，使用 VelocityTracker。<br>然后，使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mScroller.fling(getScrollX(), getScrollY(), -(<span class="keyword">int</span>) mVelocityTracker.getXVelocity(), <span class="number">0</span>, <span class="number">0</span>, totalWidth - getMeasuredWidth(), <span class="number">0</span>, getMeasuredHeight());</div></pre></td></tr></table></figure></p>
+<h2 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h2><p>1.encapsulate [ɪn’kæpsjə’let]<br>    vt. 压缩；将…装入胶囊；将…封进内部；概述<br>    vi. 形成胶囊</p>
+<p>2.coordinates [kəu’ɔ:dineits]<br>    n. [数] 坐标；相配之衣物<br>    v. 使协调；使调和（coordinate的第三人称单数形式）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发/" rel="tag"># 开发</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/29/Maven/" rel="next" title="Maven">
+                <i class="fa fa-chevron-left"></i> Maven
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="YXB" />
+          <p class="site-author-name" itemprop="name">YXB</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方说明"><span class="nav-number">1.</span> <span class="nav-text">官方说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo"><span class="nav-number">2.</span> <span class="nav-text">demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键位置："><span class="nav-number">2.1.</span> <span class="nav-text">关键位置：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单词"><span class="nav-number">3.</span> <span class="nav-text">单词</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YXB</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
