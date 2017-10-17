@@ -86,26 +86,20 @@
 
 <meta name="description" content="代码如下:
 123static Optional&amp;lt;String&amp;gt; Ex3_7(List&amp;lt;String&amp;gt; strings)&amp;#123;        return strings.stream().max(Comparator.comparing(Stream3::Ex3_6));&amp;#125;
-根据源码,分析代码究竟做了什么.
-&amp;lt;– more –&amp;gt;
-strings">
+根据源码,分析代码究竟做了什么.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 8 stream">
 <meta property="og:url" content="http://yoursite.com/2017/08/28/Java 8 stream/index.html">
 <meta property="og:site_name" content="YXB's Blog">
 <meta property="og:description" content="代码如下:
 123static Optional&amp;lt;String&amp;gt; Ex3_7(List&amp;lt;String&amp;gt; strings)&amp;#123;        return strings.stream().max(Comparator.comparing(Stream3::Ex3_6));&amp;#125;
-根据源码,分析代码究竟做了什么.
-&amp;lt;– more –&amp;gt;
-strings">
-<meta property="og:updated_time" content="2017-08-28T15:39:49.000Z">
+根据源码,分析代码究竟做了什么.">
+<meta property="og:updated_time" content="2017-10-17T06:21:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 8 stream">
 <meta name="twitter:description" content="代码如下:
 123static Optional&amp;lt;String&amp;gt; Ex3_7(List&amp;lt;String&amp;gt; strings)&amp;#123;        return strings.stream().max(Comparator.comparing(Stream3::Ex3_6));&amp;#125;
-根据源码,分析代码究竟做了什么.
-&amp;lt;– more –&amp;gt;
-strings">
+根据源码,分析代码究竟做了什么.">
 
 
 
@@ -354,7 +348,7 @@ strings">
         <p>代码如下:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> Optional&lt;String&gt; <span class="title">Ex3_7</span><span class="params">(List&lt;String&gt; strings)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> strings.stream().max(Comparator.comparing(Stream3::Ex3_6));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>根据源码,分析代码究竟做了什么.</p>
-<p>&lt;– more –&gt;</p>
+<a id="more"></a>
 <h4 id="strings-stream"><a href="#strings-stream" class="headerlink" title="strings.stream()"></a>strings.stream()</h4><p>跟踪代码,定位到:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// java.util.Collection</span></div><div class="line"><span class="function"><span class="keyword">default</span> Stream&lt;E&gt; <span class="title">stream</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> StreamSupport.stream(spliterator(), <span class="keyword">false</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>引出 StreamSupport 和 spliterator():</p>
