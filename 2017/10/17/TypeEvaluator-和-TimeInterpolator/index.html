@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="测试," />
+  <meta name="keywords" content="动画," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="If your unit test has no dependencies or only has simple dependencies on Android, you should run your test on a local development machine. This testing approach is efficient because it helps you avoid">
+<meta name="description" content="本文看看 TypeEvaluator 和 TimeInterpolator 的源码。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Building Local Unit Tests">
-<meta property="og:url" content="http://yoursite.com/2016/12/25/Building Local Unit Tests/index.html">
+<meta property="og:title" content="TypeEvaluator 和 TimeInterpolator">
+<meta property="og:url" content="http://yoursite.com/2017/10/17/TypeEvaluator-和-TimeInterpolator/index.html">
 <meta property="og:site_name" content="YXB's Blog">
-<meta property="og:description" content="If your unit test has no dependencies or only has simple dependencies on Android, you should run your test on a local development machine. This testing approach is efficient because it helps you avoid">
-<meta property="og:updated_time" content="2017-02-25T15:01:57.000Z">
+<meta property="og:description" content="本文看看 TypeEvaluator 和 TimeInterpolator 的源码。">
+<meta property="og:updated_time" content="2017-10-17T08:40:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Building Local Unit Tests">
-<meta name="twitter:description" content="If your unit test has no dependencies or only has simple dependencies on Android, you should run your test on a local development machine. This testing approach is efficient because it helps you avoid">
+<meta name="twitter:title" content="TypeEvaluator 和 TimeInterpolator">
+<meta name="twitter:description" content="本文看看 TypeEvaluator 和 TimeInterpolator 的源码。">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/25/Building Local Unit Tests/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/17/TypeEvaluator-和-TimeInterpolator/"/>
 
 
 
 
 
-  <title> Building Local Unit Tests | YXB's Blog </title>
+  <title> TypeEvaluator 和 TimeInterpolator | YXB's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -248,7 +248,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/25/Building Local Unit Tests/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/17/TypeEvaluator-和-TimeInterpolator/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="YXB">
@@ -272,7 +272,7 @@
             
             
               
-                Building Local Unit Tests
+                TypeEvaluator 和 TimeInterpolator
               
             
           </h1>
@@ -285,8 +285,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-25T13:02:36+08:00">
-                2016-12-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-17T14:29:39+08:00">
+                2017-10-17
               </time>
             
 
@@ -339,19 +339,14 @@
       
 
       
-        <p>If your unit test has no dependencies or only has simple dependencies on Android, you should run your test on a local development machine. This testing approach is efficient because it helps you avoid the overhead of loading the target app and unit test code onto a physical device or emulator every time your test is run. Consequently, the execution time for running your unit test is greatly reduced. With this approach, you normally use a mocking framework, like Mockito, to fulfill any dependency relationships.</p>
+        <p>本文看看 TypeEvaluator 和 TimeInterpolator 的源码。</p>
 <a id="more"></a>
-<h2 id="Set-Up-Your-Testing-Environment"><a href="#Set-Up-Your-Testing-Environment" class="headerlink" title="Set Up Your Testing Environment"></a>Set Up Your Testing Environment</h2><p>In your Android Studio project, you must store the source files for local unit tests at <strong>module-name/src/test/java/</strong>. This directory already exists when you create a new project.</p>
-<p>You also need to configure the testing dependencies for your project to use the standard APIs provided by the JUnit 4 framework. If your test needs to interact with Android dependencies, include the Mockito library to simplify your local unit tests. To learn more about using mock objects in your local unit tests, see Mocking Android dependencies.</p>
-<p>In your app’s top-level build.gradle file, you need to specify these libraries as dependencies:</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// Required -- JUnit 4 framework</span></div><div class="line">    testCompile <span class="string">'junit:junit:4.12'</span></div><div class="line">    <span class="comment">// Optional -- Mockito framework</span></div><div class="line">    testCompile <span class="string">'org.mockito:mockito-core:1.10.19'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Create-a-Local-Unit-Test-Class"><a href="#Create-a-Local-Unit-Test-Class" class="headerlink" title="Create a Local Unit Test Class"></a>Create a Local Unit Test Class</h2><p>Your local unit test class should be written as a JUnit 4 test class. JUnit is the most popular and widely-used unit testing framework for Java. The latest version of this framework, JUnit 4, allows you to write tests in a cleaner and more flexible way than its predecessor versions. Unlike the previous approach to Android unit testing based on JUnit 3, with JUnit 4, you do not need to extend the junit.framework.TestCase class. You also do not need to prefix your test method name with the ‘test’ keyword, or use any classes in the junit.framework or junit.extensions package.</p>
-<p>To create a basic JUnit 4 test class, create a Java class that contains one or more test methods. A test method begins with the @Test annotation and contains the code to exercise and verify a single functionality in the component that you want to test.</p>
-<p>The following example shows how you might implement a local unit test class. The test method <strong>emailValidator_CorrectEmailSimple_ReturnsTrue</strong> verifies that the isValidEmail() method in the app under test returns the correct result.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertFalse;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertTrue;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmailValidatorTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">emailValidator_CorrectEmailSimple_ReturnsTrue</span><span class="params">()</span> </span>&#123;</div><div class="line">        assertThat(EmailValidator.isValidEmail(<span class="string">"name@email.com"</span>), is(<span class="keyword">true</span>));</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>To test that components in your app return the expected results, use the junit.Assert methods to perform validation checks (or assertions) to compare the state of the component under test against some expected value. To make tests more readable, you can use Hamcrest matchers (such as the is() and equalTo() methods) to match the returned result against the expected result.</p>
-<h2 id="Mock-Android-dependencies"><a href="#Mock-Android-dependencies" class="headerlink" title="Mock Android dependencies"></a>Mock Android dependencies</h2><p>By default, the Android Plug-in for Gradle executes your local unit tests against a modified version of the android.jar library, which does not contain any actual code. Instead, method calls to Android classes from your unit test throw an exception. This is to make sure you test only your code and do not depend on any particular behavior of the Android platform (that you have not explicitly mocked).</p>
-<p>You can use a mocking framework to stub out external dependencies in your code, to easily test that your component interacts with a dependency in an expected way. By substituting Android dependencies with mock objects, you can isolate your unit test from the rest of the Android system while verifying that the correct methods in those dependencies are called. The Mockito mocking framework for Java (version 1.9.5 and higher) offers compatibility with Android unit testing. With Mockito, you can configure mock objects to return some specific value when invoked.</p>
+<h3 id="首先来看一下Choreographer"><a href="#首先来看一下Choreographer" class="headerlink" title="首先来看一下Choreographer"></a>首先来看一下Choreographer</h3><p>Android系统从4.1(API 16)开始加入 Choreographer 这个类来控制同步处理输入(Input)、动画(Animation)、绘制(Draw)三个UI操作。其实UI显示的时候每一帧要完成的事情只有这三种。Choreographer接收显示系统的时间脉冲(垂直同步信号-VSync信号)，在下一个frame渲染时控制执行这些操作。Choreographer中文翻译过来是”舞蹈指挥”，字面上的意思就是优雅地指挥以上三个UI操作一起跳一支舞。这个词可以概括这个类的工作，如果android系统是一场芭蕾舞，他就是Android UI显示这出精彩舞剧的编舞，指挥台上的演员们相互合作，精彩演出。</p>
+<p>而属性动画的每一帧数据计算就来自于 Choreographer .</p>
+<h3 id="看一下-TypeEvaluator"><a href="#看一下-TypeEvaluator" class="headerlink" title="看一下 TypeEvaluator:"></a>看一下 TypeEvaluator:</h3><p>TypeEvaluator 为类型估值器，它根据当前已执行时间占总时间的比值来计算新的属性值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> android.animation;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Interface for use with the &#123;<span class="doctag">@link</span> ValueAnimator#setEvaluator(TypeEvaluator)&#125; function. Evaluators</div><div class="line"> * allow developers to create animations on arbitrary property types, by allowing them to supply</div><div class="line"> * custom evaluators for types that are not automatically understood and used by the animation</div><div class="line"> * system.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@see</span> ValueAnimator#setEvaluator(TypeEvaluator)</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TypeEvaluator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * This function returns the result of linearly interpolating the start and end values, with</div><div class="line">     * &lt;code&gt;fraction&lt;/code&gt; representing the proportion between the start and end values. The</div><div class="line">     * calculation is a simple parametric calculation: &lt;code&gt;result = x0 + t * (x1 - x0)&lt;/code&gt;,</div><div class="line">     * where &lt;code&gt;x0&lt;/code&gt; is &lt;code&gt;startValue&lt;/code&gt;, &lt;code&gt;x1&lt;/code&gt; is &lt;code&gt;endValue&lt;/code&gt;,</div><div class="line">     * and &lt;code&gt;t&lt;/code&gt; is &lt;code&gt;fraction&lt;/code&gt;.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> fraction   The fraction from the starting to the ending values</div><div class="line">     * <span class="doctag">@param</span> startValue The start value.</div><div class="line">     * <span class="doctag">@param</span> endValue   The end value.</div><div class="line">     * <span class="doctag">@return</span> A linear interpolation between the start and end values, given the</div><div class="line">     *         &lt;code&gt;fraction&lt;/code&gt; parameter.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">evaluate</span><span class="params">(<span class="keyword">float</span> fraction, T startValue, T endValue)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>要点：<br>1.泛型参数 T ，代表了动画行径中的动画进度之的类型.<br>2.只有一个方法 evaluate 根据 fraction 计算动画的进度值.</p>
+<p>关键之处是 Animator 对象是如何和 TypeEvaluator 起作用的。</p>
 
       
     </div>
@@ -375,7 +370,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/测试/" rel="tag"># 测试</a>
+            <a href="/tags/动画/" rel="tag"># 动画</a>
           
         </div>
       
@@ -384,8 +379,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/25/Building Effective Unit Tests/" rel="next" title="Building Effective Unit Tests">
-                <i class="fa fa-chevron-left"></i> Building Effective Unit Tests
+              <a href="/2017/10/17/Activity-应用程序入口/" rel="next" title="Activity 应用程序入口">
+                <i class="fa fa-chevron-left"></i> Activity 应用程序入口
               </a>
             
           </div>
@@ -393,10 +388,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/20/ContentProvider相关/" rel="prev" title="ContentProvider相关">
-                ContentProvider相关 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -516,7 +507,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-Up-Your-Testing-Environment"><span class="nav-number">1.</span> <span class="nav-text">Set Up Your Testing Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-Local-Unit-Test-Class"><span class="nav-number">2.</span> <span class="nav-text">Create a Local Unit Test Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mock-Android-dependencies"><span class="nav-number">3.</span> <span class="nav-text">Mock Android dependencies</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先来看一下Choreographer"><span class="nav-number">1.</span> <span class="nav-text">首先来看一下Choreographer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看一下-TypeEvaluator"><span class="nav-number">2.</span> <span class="nav-text">看一下 TypeEvaluator:</span></a></li></ol></div>
             
 
           </div>
