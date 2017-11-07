@@ -246,6 +246,126 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/07/171106/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="YXB">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="YXB's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="YXB's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/07/171106/" itemprop="url">
+                  171106
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-07T12:18:45+08:00">
+                2017-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一些容易忽略的细节问题</p>
+<!-- -->
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Random;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span> <span class="keyword">throws</span> UnsupportedEncodingException </span>&#123;</div><div class="line">        <span class="comment">// round 是4舍去5入</span></div><div class="line">        System.out.println(<span class="string">"Math.round(11.5) is "</span> + Math.round(<span class="number">11.5</span>));</div><div class="line">        System.out.println(<span class="string">"Math.round(-11.5) is "</span> + Math.round(-<span class="number">11.5</span>));</div><div class="line">        <span class="comment">// floor 向下取整</span></div><div class="line">        System.out.println(<span class="string">"Math.floor(11.5) is "</span> + Math.floor(<span class="number">11.5</span>));</div><div class="line">        System.out.println(<span class="string">"Math.floor(-11.5) is "</span> + Math.floor(-<span class="number">11.5</span>));</div><div class="line">        <span class="comment">// ceil 向下取整</span></div><div class="line">        System.out.println(<span class="string">"Math.ceil(11.5) is "</span> + Math.ceil(<span class="number">11.5</span>));</div><div class="line">        System.out.println(<span class="string">"Math.ceil(-11.5) is "</span> + Math.ceil(-<span class="number">11.5</span>));</div><div class="line"></div><div class="line">        <span class="comment">// 字符数组的输出格式</span></div><div class="line">        <span class="keyword">char</span>[] a = &#123;<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>&#125;;</div><div class="line">        System.out.println(a);</div><div class="line"></div><div class="line">        <span class="comment">// 字符串列表的输出格式</span></div><div class="line">        List&lt;String&gt; ls = <span class="keyword">new</span> ArrayList();</div><div class="line">        ls.add(<span class="string">"a"</span>);</div><div class="line">        ls.add(<span class="string">"b"</span>);</div><div class="line">        ls.add(<span class="string">"c"</span>);</div><div class="line">        System.out.println(ls);</div><div class="line"></div><div class="line">        <span class="comment">// 字符列表的输出格式</span></div><div class="line">        List&lt;Character&gt; lc = <span class="keyword">new</span> ArrayList();</div><div class="line">        lc.add(<span class="string">'a'</span>);</div><div class="line">        lc.add(<span class="string">'b'</span>);</div><div class="line">        lc.add(<span class="string">'c'</span>);</div><div class="line">        System.out.println(lc);</div><div class="line"></div><div class="line">        <span class="comment">// 取模运算的符号和小数点</span></div><div class="line">        System.out.println(<span class="string">"100 % 3 is "</span> + (<span class="number">100</span> % <span class="number">3</span>));</div><div class="line">        System.out.println(<span class="string">"100 % 3.0 is "</span> + (<span class="number">100</span> % <span class="number">3.0</span>));</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"100 % -3 is "</span> + (<span class="number">100</span> % -<span class="number">3</span>));</div><div class="line">        System.out.println(<span class="string">"100 % -3.0 is "</span> + (<span class="number">100</span> % -<span class="number">3.0</span>));</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"-100 % -3 is "</span> + (-<span class="number">100</span> % -<span class="number">3</span>));</div><div class="line">        System.out.println(<span class="string">"-100 % -3.0 is "</span> + (-<span class="number">100</span> % -<span class="number">3.0</span>));</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"-100 % 3 is "</span> + (-<span class="number">100</span> % <span class="number">3</span>));</div><div class="line">        System.out.println(<span class="string">"-100 % 3.0 is "</span> + (-<span class="number">100</span> % <span class="number">3.0</span>));</div><div class="line"></div><div class="line"></div><div class="line">        Random random = <span class="keyword">new</span> Random();</div><div class="line">        <span class="keyword">boolean</span> isE = <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> v = random.nextInt();</div><div class="line">            <span class="keyword">if</span> (v == <span class="number">0</span>)</div><div class="line">                v += <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span> (<span class="number">10000</span> % v != <span class="number">10000</span> % (-v) &amp;&amp; <span class="number">10000</span> % v &gt;= <span class="number">0</span>) &#123;</div><div class="line">                isE = <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (-<span class="number">10000</span> % v != -<span class="number">10000</span> % (-v) &amp;&amp; <span class="number">10000</span> % v &lt;= <span class="number">0</span>) &#123;</div><div class="line">                isE = <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        System.out.println(<span class="string">" x % y answer is "</span> + isE);</div><div class="line">        <span class="comment">// Unicode 只是表示了符号的二进制代码，并没有说怎么存储</span></div><div class="line">        <span class="comment">// 而 utf-8 等表示了如何存储 unicode 的二进制代码</span></div><div class="line">        System.out.println(<span class="string">"中国abc"</span>.getBytes(<span class="string">"Unicode"</span>).length);</div><div class="line">        System.out.println(<span class="string">"中国abc"</span>.getBytes(<span class="string">"UTF-8"</span>).length);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</div><div class="line"></div><div class="line">    String name = <span class="string">"Jack"</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Parent</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = <span class="string">"Rose"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//error</span></div><div class="line"></div><div class="line"><span class="comment">//class Child extends Parent &#123;</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//&#125;</span></div></pre></td></tr></table></figure>
+<p>####$$ output<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Math.round(11.5) is 12</div><div class="line">Math.round(-11.5) is -11</div><div class="line">Math.floor(11.5) is 11.0</div><div class="line">Math.floor(-11.5) is -12.0</div><div class="line">Math.ceil(11.5) is 12.0</div><div class="line">Math.ceil(-11.5) is -11.0</div><div class="line">abc</div><div class="line">[a, b, c]</div><div class="line">[a, b, c]</div><div class="line">100 % 3 is 1</div><div class="line">100 % 3.0 is 1.0</div><div class="line">100 % -3 is 1</div><div class="line">100 % -3.0 is 1.0</div><div class="line">-100 % -3 is -1</div><div class="line">-100 % -3.0 is -1.0</div><div class="line">-100 % 3 is -1</div><div class="line">-100 % 3.0 is -1.0</div><div class="line"> x % y answer is true</div><div class="line">12</div><div class="line">9</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/Unicode-和UTF-8/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1407,157 +1527,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/16/Srcoller/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="YXB">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="YXB's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="YXB's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/16/Srcoller/" itemprop="url">
-                  Srcoller
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T17:17:11+08:00">
-                2017-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/View/" itemprop="url" rel="index">
-                    <span itemprop="name">View</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文仅根据 Android 官方文档和自身 Demo 讲解.内容有限,但都是自己的.</p>
-<p>代码地址<a href="https://github.com/yangxbfuj/interview/blob/master/app/src/main/java/com/example/yxb/interview/scrollview/RulerScrollerView.java">https://github.com/yangxbfuj/interview/blob/master/app/src/main/java/com/example/yxb/interview/scrollview/RulerScrollerView.java</a></p>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/10/16/Srcoller/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1603,7 +1572,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
